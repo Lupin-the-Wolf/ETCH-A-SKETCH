@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETCH-A-SKETCH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class= "box" id = 'box'>
+        <div class= "sizerContainer" id = 'sizerContainer'>
+            <h3 class="text" id = 'text'>ETCH-A-SKETCH</h3>
+            <button class="sizer" id = 'sizer'>ReSize the Grid</button>
+        </div>
+        <div class= "container" id = 'container'>
+            <div class="board" id = 'board'></div>
+    
+        </div>
+       
+    </div>
+
+</body>
+
+<script>
+
+function createDiv(){
+    let etchDiv = document.createElement('button');
+    
+    etchDiv.addEventListener("mouseover", function(e){
+        etchDiv.setAttribute("style", "background-color:green");
+    })  
+
+    return etchDiv;
+}
+
+function createAndModifyDivs(x){
+    let board = document.getElementById("board");
+        myDivs = [];
+        numOfDivs = x*x;
+        i = 0;
+    for(i; i < numOfDivs; i++){
+        myDivs.push(createDiv());
+        board.appendChild(myDivs[i]);
+    }
+    board.style.setProperty('grid-template-columns', 'repeat(' + x + ', 1fr)');
+
+}
+
+
+//we need to add a button that will listen and run this function every time its pressed
+document.getElementById("sizer").addEventListener('click', function(e){
+    location.reload();
+})
+
+;
+
+function sizePrompt(){ 
+let x = prompt("Input Grid Size",);
+if (x < 100){
+        return x;
+    }
+    else(
+        alert('Please Choose a Number Below 100')
+    )
+}
+
+createAndModifyDivs(sizePrompt());
+
+</script>
+
+</html>
